@@ -1,0 +1,22 @@
+{
+  "color": {
+    "blue": {
+      "value": "#457B9Dff"
+    },
+    "dark-blue": {
+      "value": "#1D3557ff"
+    },
+    "light-blue": {
+      "value": "#A8DADCff"
+    },
+    "white": {
+      "value": "#F1FAEEff"
+    },
+    "red": {
+      "value": "#E63946ff"
+    },
+    "blue-alpha": {
+      "value": "#457B9D2b"
+    }
+  }
+}

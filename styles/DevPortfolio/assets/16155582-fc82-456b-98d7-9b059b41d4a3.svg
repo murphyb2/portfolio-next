@@ -1,0 +1,6 @@
+<svg id="Button" xmlns="http://www.w3.org/2000/svg" width="160" height="50" viewBox="0 0 160 50">
+  <rect id="Rectangle_42" data-name="Rectangle 42" width="160" height="50" rx="25" fill="#1d3557"/>
+  <rect id="Rectangle_43" data-name="Rectangle 43" width="160" height="50" rx="25" fill="#1d3557"/>
+  <rect id="Rectangle_44" data-name="Rectangle 44" width="160" height="50" rx="25" fill="#1d3557"/>
+  <text id="Learn_More" data-name="Learn More" transform="translate(80.5 31)" fill="#fff" font-size="16" font-family="FuturaPT-HeavyObl, Futura PT" font-weight="800" font-style="oblique"><tspan x="-41.328" y="0">Learn More</tspan></text>
+</svg>
