@@ -5,12 +5,8 @@ type Props = {
   children?: ReactNode;
 };
 
-const BoxFooter = ({ className, children }: Props) => {
-  return (
-    <div className={`${className ? className : ""} mt-auto p-3`}>
-      {children}
-    </div>
-  );
+const BoxFooter = ({ className = "", children }: Props) => {
+  return <div className={`${className} mt-auto p-3`}>{children}</div>;
 };
 
 export default BoxFooter;

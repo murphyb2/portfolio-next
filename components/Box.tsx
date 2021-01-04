@@ -7,11 +7,9 @@ type Props = {
   children?: ReactNode;
 };
 
-const Box = ({ className, children }: Props) => {
+const Box = ({ className = "", children }: Props) => {
   return (
-    <div
-      className={`${className ? className : ""} h-full flex flex-col shadow-xl`}
-    >
+    <div className={`${className} h-full flex flex-col shadow-xl`}>
       {children}
     </div>
   );

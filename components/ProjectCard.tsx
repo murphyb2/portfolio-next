@@ -7,9 +7,9 @@ type Props = {
   children?: ReactNode;
 };
 
-const ProjectCard = ({ title, children, className }: Props) => {
+const ProjectCard = ({ title, children, className = "" }: Props) => {
   return (
-    <div className={`${className ? className : ""} flex flex-col m-3`}>
+    <div className={`${className} flex flex-col m-3`}>
       <div className="mx-auto">{title}</div>
       {children}
     </div>
