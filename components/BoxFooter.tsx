@@ -1,12 +1,16 @@
 import React, { ReactNode } from "react";
 
 type Props = {
-  className?: String;
+  className?: string;
   children?: ReactNode;
 };
 
 const BoxFooter = ({ className, children }: Props) => {
-  return <div className={`${className} mt-auto p-3`}>{children}</div>;
+  return (
+    <div className={`${className ? className : ""} mt-auto p-3`}>
+      {children}
+    </div>
+  );
 };
 
 export default BoxFooter;

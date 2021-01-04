@@ -3,12 +3,18 @@ import React, { ReactNode } from "react";
 import BoxFooter from "./BoxFooter";
 
 type Props = {
-  className?: String;
+  className?: string;
   children?: ReactNode;
 };
 
 const Box = ({ className, children }: Props) => {
-  return <div className={`${className} h-full flex flex-col`}>{children}</div>;
+  return (
+    <div
+      className={`${className ? className : ""} h-full flex flex-col shadow-xl`}
+    >
+      {children}
+    </div>
+  );
 };
 
 Box.Footer = BoxFooter;

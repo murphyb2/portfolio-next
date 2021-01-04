@@ -1,5 +1,7 @@
 import Layout from "../components/Layout";
 import Box from "../components/Box";
+import ProjectCard from "../components/ProjectCard";
+import Button from "../components/Button";
 
 const IndexPage = () => {
   const sectionStyles: string = `h-screen flex flex-col`;
@@ -16,13 +18,25 @@ const IndexPage = () => {
         </div>
       </section>
       {["projects", "about", "skills", "experience", "contact"].map(
-        (element) => (
-          <section className={`${sectionStyles}`}>
-            <Box className="m-24 bg-devLightBlue">
-              <Box.Footer className="text-center">{element}</Box.Footer>
-            </Box>
-          </section>
-        )
+        (element) => {
+          return element === "projects" ? (
+            <section className={`${sectionStyles}`} key={element}>
+              <Box className="m-24 bg-devLightBlue">
+                <ProjectCard title="Project 1">
+                  <ProjectCard.Img />
+                  <Button text="Learn More" className="mx-auto" />
+                </ProjectCard>
+                <Box.Footer className="text-center">projects</Box.Footer>
+              </Box>
+            </section>
+          ) : (
+            <section className={`${sectionStyles}`} key={element}>
+              <Box className="m-24 bg-devLightBlue">
+                <Box.Footer className="text-center">{element}</Box.Footer>
+              </Box>
+            </section>
+          );
+        }
       )}
     </Layout>
   );
