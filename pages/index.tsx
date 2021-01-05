@@ -1,9 +1,18 @@
+import { GetStaticProps } from "next";
+import axios from "axios";
+
+import { Project } from "../interfaces/index";
+
 import Layout from "../components/Layout";
 import Box from "../components/Box";
 import ProjectCard from "../components/ProjectCard";
 import Button from "../components/Button";
 
-const IndexPage = () => {
+type Props = {
+  projects: Project[];
+};
+
+const IndexPage = ({ projects }: Props) => {
   const sectionStyles: string = `h-screen flex flex-col`;
 
   return (
@@ -22,10 +31,18 @@ const IndexPage = () => {
           return element === "projects" ? (
             <section className={`${sectionStyles}`} key={element}>
               <Box className="m-24 bg-devLightBlue">
-                <ProjectCard title="Project 1">
-                  <ProjectCard.Img />
-                  <Button text="Learn More" className="mx-auto" />
-                </ProjectCard>
+                <div className="flex flex-row justify-around">
+                  {projects.map((project) => (
+                    <ProjectCard key={project.id} title={project.title}>
+                      <ProjectCard.Img
+                        img={project.icon}
+                        height={100}
+                        width={100}
+                      />
+                      <Button text="Learn More" className="mx-auto" />
+                    </ProjectCard>
+                  ))}
+                </div>
                 <Box.Footer className="text-center">projects</Box.Footer>
               </Box>
             </section>
@@ -40,6 +57,15 @@ const IndexPage = () => {
       )}
     </Layout>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const res = await axios.get("http://localhost:1337/projects");
+  return {
+    props: {
+      projects: res.data,
+    },
+  };
 };
 
 export default IndexPage;

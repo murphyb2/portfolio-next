@@ -5,6 +5,14 @@
 // import User from 'path/to/interfaces';
 
 export type User = {
-  id: number
-  name: string
-}
+  id: number;
+  name: string;
+};
+
+export type Project = {
+  id: string;
+  description: string;
+  link: string;
+  title: string;
+  icon: any;
+};
