@@ -31,7 +31,7 @@ const IndexPage = ({ projects }: Props) => {
           return element === "projects" ? (
             <section className={`${sectionStyles}`} key={element}>
               <Box className="m-24 bg-devLightBlue">
-                <div className="flex flex-row justify-around">
+                <div className="flex flex-row justify-center flex-wrap mx-44 mt-5 space-x-3">
                   {projects.map((project) => (
                     <ProjectCard key={project.id} title={project.title}>
                       <ProjectCard.Img
