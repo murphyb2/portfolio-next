@@ -1,18 +1,21 @@
 import { GetStaticProps } from "next";
 import axios from "axios";
 
-import { Project } from "../interfaces/index";
+import { Project, About } from "../interfaces/index";
 
 import Layout from "../components/Layout";
 import Box from "../components/Box";
-import ProjectCard from "../components/ProjectCard";
-import Button from "../components/Button";
+
+import ProjectsView from "../components/views/ProjectsView";
+import AboutView from "../components/views/AboutView";
+import ContactView from "../components/views/ContactView";
 
 type Props = {
-  projects: Project[];
+  projects?: Project[];
+  about?: About;
 };
 
-const IndexPage = ({ projects }: Props) => {
+const IndexPage = ({ projects, about }: Props) => {
   const sectionStyles: string = `h-screen flex flex-col`;
 
   return (
@@ -28,42 +31,57 @@ const IndexPage = ({ projects }: Props) => {
       </section>
       {["projects", "about", "skills", "experience", "contact"].map(
         (element) => {
-          return element === "projects" ? (
-            <section className={`${sectionStyles}`} key={element}>
-              <Box className="m-24 bg-devLightBlue">
-                <div className="flex flex-row justify-center flex-wrap mx-44 mt-5 space-x-3">
-                  {projects.map((project) => (
-                    <ProjectCard key={project.id} title={project.title}>
-                      <ProjectCard.Img
-                        img={project.icon}
-                        height={100}
-                        width={100}
-                      />
-                      <Button text="Learn More" className="mx-auto" />
-                    </ProjectCard>
-                  ))}
-                </div>
-                <Box.Footer className="text-center">projects</Box.Footer>
-              </Box>
-            </section>
-          ) : (
-            <section className={`${sectionStyles}`} key={element}>
-              <Box className="m-24 bg-devLightBlue">
-                <Box.Footer className="text-center">{element}</Box.Footer>
-              </Box>
-            </section>
-          );
+          switch (element) {
+            case "projects":
+              return (
+                <section className={`${sectionStyles}`} key={element}>
+                  <Box className="m-24 bg-devLightBlue">
+                    <ProjectsView projects={projects} />
+                    <Box.Footer className="text-center">projects</Box.Footer>
+                  </Box>
+                </section>
+              );
+            case "about":
+              return (
+                <section className={`${sectionStyles}`} key={element}>
+                  <Box className="m-24 bg-devLightBlue">
+                    <AboutView content={about} />
+                    <Box.Footer className="text-center">about</Box.Footer>
+                  </Box>
+                </section>
+              );
+            case "contact":
+              return (
+                <section className={`${sectionStyles}`} key={element}>
+                  <Box className="m-24 bg-devLightBlue">
+                    <ContactView />
+                    <Box.Footer className="text-center">contact</Box.Footer>
+                  </Box>
+                </section>
+              );
+
+            default:
+              return (
+                <section className={`${sectionStyles}`} key={element}>
+                  <Box className="m-24 bg-devLightBlue">
+                    <Box.Footer className="text-center">{element}</Box.Footer>
+                  </Box>
+                </section>
+              );
+          }
         }
       )}
     </Layout>
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await axios.get("http://localhost:1337/projects");
+export const getStaticProps: GetStaticProps = async () => {
+  const resProjects = await axios.get("http://localhost:1337/projects");
+  const resAbout = await axios.get("http://localhost:1337/about");
   return {
     props: {
-      projects: res.data,
+      projects: resProjects.data,
+      about: resAbout.data,
     },
   };
 };

@@ -15,7 +15,6 @@ const imageDefault = {
 };
 
 const ProjectCardImg = ({ img, height, width }: Props) => {
-  console.log(img.url);
   return img.url ? (
     <Image
       src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${img.url}`}

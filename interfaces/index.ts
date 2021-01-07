@@ -16,3 +16,10 @@ export type Project = {
   title: string;
   icon: any;
 };
+
+export type About = {
+  id: string;
+  body: string;
+  header: string;
+  profilePic: any;
+};
