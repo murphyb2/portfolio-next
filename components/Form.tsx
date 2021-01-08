@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 
 import FormInput from "./FormInput";
 import FormTextInput from "./FormTextInput";
+import Button from "./Button";
 
 type Props = {
   children?: ReactNode;
@@ -17,9 +18,7 @@ const Form = ({ children }: Props) => {
     >
       <div className="flex flex-col mx-40">
         {children}
-        <button className="bg-devBlue mx-auto" type="submit">
-          Send
-        </button>
+        <Button className="bg-devBlue mx-auto" text="Send" type="submit" />
       </div>
     </form>
   );

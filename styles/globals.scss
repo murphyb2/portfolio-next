@@ -1,6 +1,20 @@
 @import url("https://use.typekit.net/alm6vqx.css");
 @import "./DevPortfolio/dist/styledictionary/css/variables.css";
 
+// Italic placeholder text in form elements
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+:-moz-placeholder {
+  font-style: italic;
+}
+::-moz-placeholder {
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+}
+
 body {
   background-color: var(--white);
   background-image: linear-gradient(
