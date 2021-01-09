@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import axios from "axios";
 
-import { Project, About } from "../interfaces/index";
+import { Project, About, Skill } from "../interfaces/index";
 
 import Layout from "../components/Layout";
 import Box from "../components/Box";
@@ -9,13 +9,15 @@ import Box from "../components/Box";
 import ProjectsView from "../components/views/ProjectsView";
 import AboutView from "../components/views/AboutView";
 import ContactView from "../components/views/ContactView";
+import SkillsView from "../components/views/SkillsView";
 
 type Props = {
   projects?: Project[];
   about?: About;
+  skills?: Skill[];
 };
 
-const IndexPage = ({ projects, about }: Props) => {
+const IndexPage = ({ projects, about, skills }: Props) => {
   const sectionStyles: string = `h-screen flex flex-col`;
 
   return (
@@ -60,6 +62,16 @@ const IndexPage = ({ projects, about }: Props) => {
                 </section>
               );
 
+            case "skills":
+              return (
+                <section className={`${sectionStyles}`} key={element}>
+                  <Box className="m-24 bg-devLightBlue">
+                    <SkillsView skills={skills} />
+                    <Box.Footer className="text-center">skills</Box.Footer>
+                  </Box>
+                </section>
+              );
+
             default:
               return (
                 <section className={`${sectionStyles}`} key={element}>
@@ -78,10 +90,12 @@ const IndexPage = ({ projects, about }: Props) => {
 export const getStaticProps: GetStaticProps = async () => {
   const resProjects = await axios.get("http://localhost:1337/projects");
   const resAbout = await axios.get("http://localhost:1337/about");
+  const resSkills = await axios.get("http://localhost:1337/skills");
   return {
     props: {
       projects: resProjects.data,
       about: resAbout.data,
+      skills: resSkills.data,
     },
   };
 };

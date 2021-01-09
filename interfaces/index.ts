@@ -23,3 +23,9 @@ export type About = {
   header: string;
   profilePic: any;
 };
+
+export type Skill = {
+  id: string;
+  name: string;
+  icon: any;
+};

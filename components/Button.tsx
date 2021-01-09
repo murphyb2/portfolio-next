@@ -17,7 +17,7 @@ const Button = ({ text, className = "", type = "button" }: Props) => {
 
   return (
     <button
-      className={`${className} rounded-full bg-devBlue px-5 py-2 m-3`}
+      className={`${className} rounded-full bg-devDarkBlue px-5 py-2 m-3`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       type={type}

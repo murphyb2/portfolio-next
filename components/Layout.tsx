@@ -2,6 +2,8 @@ import React, { ReactNode } from "react";
 import Head from "next/head";
 import Header from "./Header";
 
+import Footer from "./Footer";
+
 type Props = {
   children?: ReactNode;
   title?: string;
@@ -17,10 +19,7 @@ const Layout = ({ children, title = "Bryan Murphy" }: Props) => (
       </Head>
       <Header />
       {children}
-      <footer>
-        <hr />
-        <span>I'm here to stay (Footer)</span>
-      </footer>
+      <Footer />
     </div>
   </>
 );
