@@ -35,23 +35,23 @@ const IndexPage = ({ projects, about, skills }: Props) => {
         (element) => {
           switch (element) {
             case "projects":
-              return (
+              return projects ? (
                 <section className={`${sectionStyles}`} key={element}>
                   <Box className="m-24 bg-devLightBlue">
                     <ProjectsView projects={projects} />
                     <Box.Footer className="text-center">projects</Box.Footer>
                   </Box>
                 </section>
-              );
+              ) : null;
             case "about":
-              return (
+              return about ? (
                 <section className={`${sectionStyles}`} key={element}>
                   <Box className="m-24 bg-devLightBlue">
                     <AboutView content={about} />
                     <Box.Footer className="text-center">about</Box.Footer>
                   </Box>
                 </section>
-              );
+              ) : null;
             case "contact":
               return (
                 <section className={`${sectionStyles}`} key={element}>
@@ -63,14 +63,14 @@ const IndexPage = ({ projects, about, skills }: Props) => {
               );
 
             case "skills":
-              return (
+              return skills ? (
                 <section className={`${sectionStyles}`} key={element}>
                   <Box className="m-24 bg-devLightBlue">
                     <SkillsView skills={skills} />
                     <Box.Footer className="text-center">skills</Box.Footer>
                   </Box>
                 </section>
-              );
+              ) : null;
 
             default:
               return (

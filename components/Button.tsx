@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   text: string;
   className?: string;
-  type: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset" | undefined;
 };
 
 const Button = ({ text, className = "", type = "button" }: Props) => {
