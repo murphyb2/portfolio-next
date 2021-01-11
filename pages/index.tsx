@@ -19,6 +19,7 @@ type Props = {
 
 const IndexPage = ({ projects, about, skills }: Props) => {
   const sectionStyles: string = `h-screen flex flex-col`;
+  const boxStyles: string = "m-24 p-10 bg-devLightBlue";
 
   return (
     <Layout title="Bryan Murphy">
@@ -37,7 +38,7 @@ const IndexPage = ({ projects, about, skills }: Props) => {
             case "projects":
               return projects ? (
                 <section className={`${sectionStyles}`} key={element}>
-                  <Box className="m-24 bg-devLightBlue">
+                  <Box className={boxStyles}>
                     <ProjectsView projects={projects} />
                     <Box.Footer className="text-center">projects</Box.Footer>
                   </Box>
@@ -46,18 +47,18 @@ const IndexPage = ({ projects, about, skills }: Props) => {
             case "about":
               return about ? (
                 <section className={`${sectionStyles}`} key={element}>
-                  <Box className="m-24 bg-devLightBlue">
+                  <Box className={boxStyles}>
                     <AboutView content={about} />
-                    <Box.Footer className="text-center">about</Box.Footer>
+                    <Box.Footer className="text-center">{element}</Box.Footer>
                   </Box>
                 </section>
               ) : null;
             case "contact":
               return (
                 <section className={`${sectionStyles}`} key={element}>
-                  <Box className="m-24 bg-devLightBlue">
+                  <Box className={boxStyles}>
                     <ContactView />
-                    <Box.Footer className="text-center">contact</Box.Footer>
+                    <Box.Footer className="text-center">{element}</Box.Footer>
                   </Box>
                 </section>
               );
@@ -65,9 +66,9 @@ const IndexPage = ({ projects, about, skills }: Props) => {
             case "skills":
               return skills ? (
                 <section className={`${sectionStyles}`} key={element}>
-                  <Box className="m-24 bg-devLightBlue">
+                  <Box className={boxStyles}>
                     <SkillsView skills={skills} />
-                    <Box.Footer className="text-center">skills</Box.Footer>
+                    <Box.Footer className="text-center">{element}</Box.Footer>
                   </Box>
                 </section>
               ) : null;
@@ -75,7 +76,7 @@ const IndexPage = ({ projects, about, skills }: Props) => {
             default:
               return (
                 <section className={`${sectionStyles}`} key={element}>
-                  <Box className="m-24 bg-devLightBlue">
+                  <Box className={boxStyles}>
                     <Box.Footer className="text-center">{element}</Box.Footer>
                   </Box>
                 </section>

@@ -9,12 +9,12 @@ type Props = {
 
 const AboutView = ({ content }: Props) => {
   return (
-    <div className="flex m-10">
-      <div>
+    <div className="flex">
+      <div className="max-w-sm">
         <Image
           src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${content.profilePic.url}`}
-          height={`${content.profilePic.height}`}
-          width={`${content.profilePic.width}`}
+          height={`${content.profilePic.height / 2}`}
+          width={`${content.profilePic.width / 2}`}
           alt="B"
         />
       </div>
