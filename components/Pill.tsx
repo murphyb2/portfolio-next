@@ -5,7 +5,11 @@ type Props = {
 };
 
 const Pill = ({ children }: Props) => {
-  return <div className="rounded-full bg-devBlue mx-auto px-2">{children}</div>;
+  return (
+    <div className="rounded-full bg-devBlue text-devWhite mx-auto px-2">
+      {children}
+    </div>
+  );
 };
 
 export default Pill;
