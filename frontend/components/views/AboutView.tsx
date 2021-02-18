@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 
+import { getStrapiMedia } from "../../utils/media";
+
 type Props = {
   about: any;
 };
@@ -9,7 +11,7 @@ const AboutView = ({ about }: Props) => {
     <div className="grid grid-cols-12">
       <div className="col-start-4 col-span-6">
         <Image
-          src={`http://localhost:1337${about.profilePic.url}`}
+          src={getStrapiMedia(about.profilePic)}
           layout="responsive"
           height={about.profilePic.height}
           width={about.profilePic.width}

@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { getStrapiMedia } from "../../utils/media";
+
 import Button from "../Button";
 
 type Props = {
@@ -39,7 +41,7 @@ const ProjectsView = ({ projects }: Props) => {
               }`}
             >
               <Image
-                src={`http://localhost:1337${project.thumbnail.url}`}
+                src={getStrapiMedia(project.thumbnail)}
                 layout="responsive"
                 height={project.thumbnail.height}
                 width={project.thumbnail.width}
