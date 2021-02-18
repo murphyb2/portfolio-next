@@ -3,6 +3,7 @@ import Image from "next/image";
 import axios from "axios";
 
 import Footer from "../components/Footer";
+import Nav from "../components/Nav";
 
 import ContactView from "../components/views/ContactView";
 import AboutView from "../components/views/AboutView";
@@ -16,11 +17,7 @@ export default function Home({ projects, about }) {
         <div className="col-span-6 grid grid-rows-6">
           <h1>Bryan Murphy</h1>
           <h2>Design Focused Full Stack Engineer</h2>
-          <div className="row-start-6 flex justify-around items-center">
-            <p>projects</p>
-            <p>about</p>
-            <p>contact</p>
-          </div>
+          <Nav className="row-start-6 flex justify-around items-center" />
         </div>
         <div className="col-start-7 col-span-6 items-end">
           <Image
@@ -66,8 +63,10 @@ export default function Home({ projects, about }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const projects = await axios.get("http://localhost:1337/projects");
-  const about = await axios.get("http://localhost:1337/about");
+  const projects = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/projects`
+  );
+  const about = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about`);
 
   return {
     props: {
