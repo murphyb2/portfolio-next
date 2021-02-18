@@ -6,20 +6,19 @@ import Button from "./Button";
 
 type Props = {
   children?: ReactNode;
+  className?: string;
 };
 
-const Form = ({ children }: Props) => {
+const Form = ({ children, className = "" }: Props) => {
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         console.log("submitted!");
       }}
+      className={`${className}`}
     >
-      <div className="flex flex-col mx-40">
-        {children}
-        <Button className="bg-devBlue mx-auto" text="Send" type="submit" />
-      </div>
+      {children}
     </form>
   );
 };

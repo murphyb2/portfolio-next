@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="637" height="46" viewBox="0 0 637 46">
-  <g id="Nav" transform="translate(1)">
-    <text id="projects" transform="translate(52 35)" fill="#e63946" font-size="36" font-family="FuturaPT-Light, Futura PT" font-weight="300"><tspan x="-52.416" y="0">projects</tspan></text>
-    <text id="about" transform="translate(134)" fill="#e63946" font-size="36" font-family="FuturaPT-Light, Futura PT" font-weight="300"><tspan x="-39.312" y="35">about</tspan></text>
-    <text id="experience" transform="translate(429 35)" fill="#e63946" font-size="36" font-family="FuturaPT-Light, Futura PT" font-weight="300"><tspan x="-74.79" y="0">experience</tspan></text>
-    <text id="skills" transform="translate(295 35)" fill="#e63946" font-size="36" font-family="FuturaPT-Light, Futura PT" font-weight="300"><tspan x="-28.908" y="0">skills</tspan></text>
-    <text id="contact" transform="translate(534)" fill="#e63946" font-size="36" font-family="FuturaPT-Light, Futura PT" font-weight="300"><tspan x="-49.5" y="35">contact</tspan></text>
-  </g>
-</svg>

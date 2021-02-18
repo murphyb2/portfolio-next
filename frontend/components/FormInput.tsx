@@ -4,12 +4,18 @@ type Props = {
   placeholder?: string;
   handleChange: any;
   value: string;
+  className?: string;
 };
 
-const FormInput = ({ placeholder, handleChange, value }: Props) => {
+const FormInput = ({
+  className = "",
+  placeholder,
+  handleChange,
+  value,
+}: Props) => {
   return (
     <input
-      className="m-1 p-3"
+      className={`${className} m-1 p-3`}
       type="text"
       value={value}
       onChange={handleChange}

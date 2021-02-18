@@ -1,104 +1,79 @@
 import { GetStaticProps } from "next";
+import Head from "next/head";
+import Image from "next/image";
 import axios from "axios";
 
-import { Project, About, Skill } from "../interfaces/index";
+import Footer from "../components/Footer";
 
-import Layout from "../components/Layout";
-import Box from "../components/Box";
-
-import ProjectsView from "../components/views/ProjectsView";
-import AboutView from "../components/views/AboutView";
 import ContactView from "../components/views/ContactView";
-import SkillsView from "../components/views/SkillsView";
+import AboutView from "../components/views/AboutView";
+import ProjectsView from "../components/views/ProjectsView";
+import SectionTitle from "../components/SectionTitle";
 
-type Props = {
-  projects?: Project[];
-  about?: About;
-  skills?: Skill[];
-};
-
-const IndexPage = ({ projects, about, skills }: Props) => {
-  const sectionStyles: string = `h-screen flex flex-col`;
-  const boxStyles: string = "m-24 p-10 bg-devLightBlue";
-
+export default function Home({ projects, about }) {
   return (
-    <Layout title="Bryan Murphy">
-      <section className={`${sectionStyles}`}>
-        <h1 className="pt-4 pl-4">Bryan Murphy</h1>
-        <div className="text-center my-auto flex">
-          <h1 className="text-right mx-auto">
-            Design Focused. <br />
-            Full Stack Engineer.
-          </h1>
+    <>
+      <div className="grid grid-cols-12 pt-10 px-10 h-screen">
+        <div className="col-span-6 grid grid-rows-6">
+          <h1>Bryan Murphy</h1>
+          <h2>Design Focused Full Stack Engineer</h2>
+          <div className="row-start-6 flex justify-around items-center">
+            <p>projects</p>
+            <p>about</p>
+            <p>contact</p>
+          </div>
         </div>
-      </section>
-      {["projects", "about", "skills", "experience", "contact"].map(
-        (element) => {
-          switch (element) {
-            case "projects":
-              return projects ? (
-                <section className={`${sectionStyles}`} key={element}>
-                  <Box className={boxStyles}>
-                    <ProjectsView projects={projects} />
-                    <Box.Footer className="text-center">projects</Box.Footer>
-                  </Box>
-                </section>
-              ) : null;
-            case "about":
-              return about ? (
-                <section className={`${sectionStyles}`} key={element}>
-                  <Box className={boxStyles}>
-                    <AboutView content={about} />
-                    <Box.Footer className="text-center">{element}</Box.Footer>
-                  </Box>
-                </section>
-              ) : null;
-            case "contact":
-              return (
-                <section className={`${sectionStyles}`} key={element}>
-                  <Box className={boxStyles}>
-                    <ContactView />
-                    <Box.Footer className="text-center">{element}</Box.Footer>
-                  </Box>
-                </section>
-              );
-
-            case "skills":
-              return skills ? (
-                <section className={`${sectionStyles}`} key={element}>
-                  <Box className={boxStyles}>
-                    <SkillsView skills={skills} />
-                    <Box.Footer className="text-center">{element}</Box.Footer>
-                  </Box>
-                </section>
-              ) : null;
-
-            default:
-              return (
-                <section className={`${sectionStyles}`} key={element}>
-                  <Box className={boxStyles}>
-                    <Box.Footer className="text-center">{element}</Box.Footer>
-                  </Box>
-                </section>
-              );
-          }
-        }
-      )}
-    </Layout>
+        <div className="col-start-7 col-span-6 items-end">
+          <Image
+            src="/svg/undraw_solution_mindset.svg"
+            alt=""
+            layout="responsive"
+            height={902.402}
+            width={815.631}
+            className="col-start-6"
+          />
+        </div>
+        <div className="col-span-full m-auto">
+          <Image
+            src="/svg/chevron-down.svg"
+            alt=""
+            layout="intrinsic"
+            width={30.705}
+            height={18.634}
+          />
+        </div>
+      </div>
+      <div className="bg-gray-100">
+        <div className="grid">
+          <SectionTitle title="projects" />
+          <ProjectsView projects={projects} />
+        </div>
+      </div>
+      <div>
+        <SectionTitle title="about" />
+        <AboutView about={about} />
+      </div>
+      <div className="bg-gray-100">
+        <SectionTitle title="contact" />
+        <div>
+          <ContactView />
+        </div>
+      </div>
+      <div>
+        <Footer />
+      </div>
+    </>
   );
-};
+}
 
 export const getStaticProps: GetStaticProps = async () => {
-  const resProjects = await axios.get("http://localhost:1337/projects");
-  const resAbout = await axios.get("http://localhost:1337/about");
-  const resSkills = await axios.get("http://localhost:1337/skills");
+  const projects = await axios.get("http://localhost:1337/projects");
+  const about = await axios.get("http://localhost:1337/about");
+
   return {
     props: {
-      projects: resProjects.data,
-      about: resAbout.data,
-      skills: resSkills.data,
+      projects: projects.data,
+      about: about.data,
     },
   };
 };
-
-export default IndexPage;

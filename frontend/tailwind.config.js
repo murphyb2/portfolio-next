@@ -1,18 +1,11 @@
 module.exports = {
-  purge: ["./pages/**/*.tsx", "./components/**/*.tsx"],
+  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      colors: {
-        devBlue: "var(--blue)",
-        devDarkBlue: "var(--dark-blue)",
-        devLightBlue: "var(--light-blue)",
-        devWhite: "var(--white)",
-        devRed: "var(--red)",
+      gridTemplateColumns: {
+        footer: "10% auto",
       },
-    },
-    fontFamily: {
-      body: ["futura-pt"],
     },
   },
   variants: {

@@ -1,12 +1,13 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 type Props = {
-  text: string;
+  text?: string;
   className?: string;
   type?: "button" | "submit" | "reset" | undefined;
+  children?: ReactNode;
 };
 
-const Button = ({ text, className = "", type = "button" }: Props) => {
+const Button = ({ text, className = "", type = "button", children }: Props) => {
   const handleMouseEnter = () => {
     console.log("im hovering!");
   };
@@ -17,12 +18,12 @@ const Button = ({ text, className = "", type = "button" }: Props) => {
 
   return (
     <button
-      className={`${className} rounded-full bg-devDarkBlue text-devWhite px-5 py-2 m-3`}
+      className={`${className} bg-black text-white px-5 py-2`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       type={type}
     >
-      {text}
+      {children || text}
     </button>
   );
 };

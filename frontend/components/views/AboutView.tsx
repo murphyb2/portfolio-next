@@ -1,26 +1,23 @@
 import React from "react";
 import Image from "next/image";
 
-import { About } from "../../interfaces/index";
-
 type Props = {
-  content: About;
+  about: any;
 };
-
-const AboutView = ({ content }: Props) => {
+const AboutView = ({ about }: Props) => {
   return (
-    <div className="flex">
-      <div className="max-w-sm">
+    <div className="grid grid-cols-12">
+      <div className="col-start-4 col-span-6">
         <Image
-          src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${content.profilePic.url}`}
-          height={`${content.profilePic.height / 2}`}
-          width={`${content.profilePic.width / 2}`}
-          alt="B"
+          src={`http://localhost:1337${about.profilePic.url}`}
+          layout="responsive"
+          height={about.profilePic.height}
+          width={about.profilePic.width}
         />
       </div>
-      <div className="flex flex-col">
-        <h1>{content.header}</h1>
-        <h4>{content.body}</h4>
+      <p className="col-start-4 col-span-6">{about.body}</p>
+      <div className="bg-black text-white mx-auto px-8 py-2 col-start-6 col-span-2 text-center">
+        Resume
       </div>
     </div>
   );
