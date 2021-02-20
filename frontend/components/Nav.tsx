@@ -9,18 +9,13 @@ type NavProps = {
 type NavItemProps = {
   className?: string;
   children?: ReactNode;
-  to: string;
 };
 const Nav = ({ className = "", children }: NavProps) => {
   return <div className={`${className}`}>{children}</div>;
 };
 
-Nav.Item = ({ children, to, className = "" }: NavItemProps) => {
-  return (
-    <Link href={to}>
-      <a className={className}>{children}</a>
-    </Link>
-  );
+Nav.Item = ({ children, className = "" }: NavItemProps) => {
+  return <div className={className}>{children}</div>;
 };
 
 export default Nav;

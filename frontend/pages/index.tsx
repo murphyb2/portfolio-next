@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Image from "next/image";
+import { useRef } from "react";
 import axios from "axios";
 
 import Footer from "../components/Footer";
@@ -11,13 +12,38 @@ import ProjectsView from "../components/views/ProjectsView";
 import SectionTitle from "../components/SectionTitle";
 
 export default function Home({ projects, about }) {
+  const projectsRef: any = useRef();
+  const handleProjectsScroll = () => {
+    projectsRef?.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const aboutRef: any = useRef();
+  const handleAboutScroll = () => {
+    aboutRef?.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const contactRef: any = useRef();
+  const handleContactScroll = () => {
+    contactRef?.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <div className="grid grid-cols-12 pt-10 px-10 h-screen">
         <div className="col-span-6 grid grid-rows-6">
           <h1>Bryan Murphy</h1>
           <h2>Design Focused Full Stack Engineer</h2>
-          <Nav className="row-start-6 flex justify-around items-center" />
+          <Nav className="row-start-6 flex justify-around items-center">
+            <Nav.Item>
+              <button onClick={handleProjectsScroll}>projects</button>
+            </Nav.Item>
+            <Nav.Item>
+              <button onClick={handleAboutScroll}>about</button>
+            </Nav.Item>
+            <Nav.Item>
+              <button onClick={handleContactScroll}>contact</button>
+            </Nav.Item>
+          </Nav>
         </div>
         <div className="col-start-7 col-span-6 items-end">
           <Image
@@ -39,17 +65,17 @@ export default function Home({ projects, about }) {
           />
         </div>
       </div>
-      <div className="bg-gray-100">
+      <div className="bg-gray-100" ref={projectsRef}>
         <div className="grid">
           <SectionTitle title="projects" />
           <ProjectsView projects={projects} />
         </div>
       </div>
-      <div>
+      <div ref={aboutRef}>
         <SectionTitle title="about" />
         <AboutView about={about} />
       </div>
-      <div className="bg-gray-100">
+      <div className="bg-gray-100" ref={contactRef}>
         <SectionTitle title="contact" />
         <div>
           <ContactView />
