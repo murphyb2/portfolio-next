@@ -9,7 +9,7 @@ import NavBar from "../../components/NavBar";
 const ProjectDetailPage = ({ project }) => {
   return (
     <>
-      <NavBar className="my-5" />
+      <NavBar className="my-12" />
       <div className="grid grid-cols-12 bg-gray-100">
         <div className="my-7 col-start-2 col-span-10 flex flex-col">
           <div className="flex justify-around">
