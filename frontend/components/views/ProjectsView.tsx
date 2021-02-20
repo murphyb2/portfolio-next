@@ -21,11 +21,13 @@ const ProjectsView = ({ projects }: Props) => {
                 index % 2 > 0
                   ? "order-last col-start-6 col-span-6" // image | description
                   : "col-start-2 col-span-6" // description | image
-              }`}
+              } flex flex-col h-full`}
             >
-              <h3 className="text-center">{project.title}</h3>
-              <p>{project.shortDescription}</p>
-              <div className="flex justify-center">
+              <h3 className="text-center font-medium text-3xl">
+                {project.title}
+              </h3>
+              <p className="text-xl">{project.shortDescription}</p>
+              <div className="m-auto">
                 <Link href={`/projects/${project.id}`}>
                   <a>
                     <Button>See More</Button>

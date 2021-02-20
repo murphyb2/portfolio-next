@@ -29,23 +29,39 @@ export default function Home({ projects, about }) {
 
   return (
     <>
-      <div className="grid grid-cols-12 pt-10 px-10 h-screen">
-        <div className="col-span-6 grid grid-rows-6">
-          <h1>Bryan Murphy</h1>
-          <h2>Design Focused Full Stack Engineer</h2>
-          <Nav className="row-start-6 flex justify-around items-center">
-            <Nav.Item>
-              <button onClick={handleProjectsScroll}>projects</button>
-            </Nav.Item>
-            <Nav.Item>
-              <button onClick={handleAboutScroll}>about</button>
-            </Nav.Item>
-            <Nav.Item>
-              <button onClick={handleContactScroll}>contact</button>
-            </Nav.Item>
-          </Nav>
+      <div className="grid grid-cols-12 h-screen">
+        <Nav className="col-span-full flex justify-center items-center">
+          <Nav.Item className="px-12">
+            <button onClick={handleProjectsScroll}>projects</button>
+          </Nav.Item>
+          <Nav.Item className="px-12">
+            <button onClick={handleAboutScroll}>about</button>
+          </Nav.Item>
+          <Nav.Item className="px-12">
+            <button onClick={handleContactScroll}>contact</button>
+          </Nav.Item>
+        </Nav>
+        <div className="col-start-2 col-span-5 flex flex-col">
+          <h1 className="font-display text-8xl mb-16">
+            Hi, my name is <br />
+            Bryan Murphy
+          </h1>
+          <h2 className="text-6xl italic">
+            Design Focused <br />
+            Full Stack Engineer
+          </h2>
+          {/* <div className="mt-auto pb-12 text-center cursor-pointer">
+            <Image
+              src="/svg/chevron-down.svg"
+              alt=""
+              layout="intrinsic"
+              width={30.705}
+              height={18.634}
+              onClick={handleProjectsScroll}
+            />
+          </div> */}
         </div>
-        <div className="col-start-7 col-span-6 items-end">
+        <div className="col-start-7 col-span-5 items-end">
           <Image
             src="/svg/undraw_solution_mindset.svg"
             alt=""
@@ -53,15 +69,6 @@ export default function Home({ projects, about }) {
             height={902.402}
             width={815.631}
             className="col-start-6"
-          />
-        </div>
-        <div className="col-span-full m-auto">
-          <Image
-            src="/svg/chevron-down.svg"
-            alt=""
-            layout="intrinsic"
-            width={30.705}
-            height={18.634}
           />
         </div>
       </div>

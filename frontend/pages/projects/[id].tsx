@@ -9,9 +9,9 @@ import NavBar from "../../components/NavBar";
 const ProjectDetailPage = ({ project }) => {
   return (
     <>
-      <NavBar />
+      <NavBar className="my-5" />
       <div className="grid grid-cols-12 bg-gray-100">
-        <div className="col-start-2 col-span-10 flex flex-col">
+        <div className="my-7 col-start-2 col-span-10 flex flex-col">
           <div className="flex justify-around">
             <hr
               className="my-auto flex-grow"
@@ -20,7 +20,7 @@ const ProjectDetailPage = ({ project }) => {
                 backgroundColor: "black",
               }}
             />
-            <h1 className="mx-7">{project.title}</h1>
+            <h1 className="mx-7 font-display text-4xl">{project.title}</h1>
             <hr
               className="my-auto flex-grow"
               style={{

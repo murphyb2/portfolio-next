@@ -6,9 +6,9 @@ type Props = {
 
 const SectionTitle = ({ title }: Props) => {
   return (
-    <div className="grid grid-auto-flow grid-cols-12 gap-3 mt-5">
+    <div className="grid grid-auto-flow grid-cols-12 gap-3 my-10">
       <div className="col-start-2 col-span-10 grid grid-cols-footer">
-        <h1 className="text-4xl">{title}</h1>
+        <h1 className="text-4xl font-display">{title}</h1>
         <hr
           className="ml-7 my-auto"
           style={{
