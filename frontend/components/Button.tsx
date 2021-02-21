@@ -5,9 +5,16 @@ type Props = {
   className?: string;
   type?: "button" | "submit" | "reset" | undefined;
   children?: ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const Button = ({ text, className = "", type = "button", children }: Props) => {
+const Button = ({
+  text,
+  className = "",
+  type = "button",
+  children,
+  onClick,
+}: Props) => {
   const handleMouseEnter = () => {
     console.log("im hovering!");
   };
@@ -22,6 +29,7 @@ const Button = ({ text, className = "", type = "button", children }: Props) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       type={type}
+      onClick={onClick}
     >
       {children || text}
     </button>

@@ -15,19 +15,30 @@ const ProjectsView = ({ projects }: Props) => {
     <div>
       {projects?.map((project, index) => {
         return (
-          <div className="grid grid-cols-12 my-12 gap-6" key={project.id}>
+          <div
+            className={`${
+              index % 2 < 1 ? "" : ""
+            } grid grid-cols-12 my-12 gap-6 py-5`}
+            key={project.id}
+          >
             <div
               className={`${
-                index % 2 > 0
+                index % 2 < 1
                   ? "order-last col-start-6 col-span-6" // image | description
                   : "col-start-2 col-span-6" // description | image
               } flex flex-col h-full`}
             >
-              <h3 className="text-center font-medium text-3xl">
+              <h3
+                className={`${
+                  index % 2 < 1 ? "" : "text-right"
+                } font-medium text-3xl`}
+              >
                 {project.title}
               </h3>
-              <p className="text-xl">{project.shortDescription}</p>
-              <div className="m-auto">
+              <p className={`${index % 2 < 1 ? "" : "text-right"} text-xl`}>
+                {project.shortDescription}
+              </p>
+              <div className={`${index % 2 < 1 ? "" : "ml-auto"} my-auto`}>
                 <Link href={`/projects/${project.id}`}>
                   <a>
                     <Button>See More</Button>
@@ -37,7 +48,7 @@ const ProjectsView = ({ projects }: Props) => {
             </div>
             <div
               className={`${
-                index % 2 > 0
+                index % 2 < 1
                   ? "order-first col-start-2 col-span-4" // image | description
                   : "col-start-8 col-span-4" // description | image
               }`}

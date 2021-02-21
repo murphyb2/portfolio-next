@@ -30,7 +30,7 @@ export default function Home({ projects, about }) {
   return (
     <>
       <div className="grid grid-cols-12 h-screen">
-        <Nav className="col-span-full flex justify-center items-center">
+        <Nav className="col-span-full flex justify-center items-center bg-gray-100 mb-8">
           <Nav.Item className="px-12">
             <button onClick={handleProjectsScroll}>projects</button>
           </Nav.Item>
@@ -78,13 +78,13 @@ export default function Home({ projects, about }) {
           <ProjectsView projects={projects} />
         </div>
       </div>
-      <div ref={aboutRef}>
+      <div ref={aboutRef} className="grid mb-12">
         <SectionTitle title="about" />
         <AboutView about={about} />
       </div>
-      <div className="bg-gray-100" ref={contactRef}>
+      <div className="bg-gray-100 grid" ref={contactRef}>
         <SectionTitle title="contact" />
-        <div>
+        <div className="mb-12">
           <ContactView />
         </div>
       </div>

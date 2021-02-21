@@ -25,6 +25,15 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "resume": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }
