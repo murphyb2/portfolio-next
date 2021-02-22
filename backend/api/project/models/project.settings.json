@@ -14,9 +14,6 @@
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "text"
-    },
     "link": {
       "type": "string"
     },
@@ -42,6 +39,9 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }

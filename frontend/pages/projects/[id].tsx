@@ -4,7 +4,9 @@ import axios from "axios";
 import Footer from "../../components/Footer";
 
 import { getStrapiMedia } from "../../utils/media";
+import { LinkRenderer } from "../../utils/markdown";
 import NavBar from "../../components/NavBar";
+import ReactMarkdown from "react-markdown";
 
 const ProjectDetailPage = ({ project }) => {
   return (
@@ -38,7 +40,15 @@ const ProjectDetailPage = ({ project }) => {
             layout="responsive"
           />
         </div>
-        <p className="col-start-4 col-span-6">{project.shortDescription}</p>
+        <div className="col-start-4 col-span-6 text-xl py-16">
+          {project.description ? (
+            <ReactMarkdown renderers={{ link: LinkRenderer }}>
+              {project.description}
+            </ReactMarkdown>
+          ) : (
+            project.shortDescription
+          )}
+        </div>
       </div>
       <Footer />
     </>
