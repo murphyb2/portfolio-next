@@ -6,6 +6,7 @@ type Props = {
   type?: "button" | "submit" | "reset" | undefined;
   children?: ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
 };
 
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
   type = "button",
   children,
   onClick,
+  disabled = false,
 }: Props) => {
   const handleMouseEnter = () => {
     console.log("im hovering!");
@@ -30,6 +32,7 @@ const Button = ({
       onMouseLeave={handleMouseLeave}
       type={type}
       onClick={onClick}
+      disabled={disabled}
     >
       {children || text}
     </button>

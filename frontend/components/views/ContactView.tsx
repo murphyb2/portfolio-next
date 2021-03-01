@@ -1,11 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "../Form";
 import Button from "../Button";
+import axios from "axios";
 
 const ContactView = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [msg, setMsg] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!!success || !!error) {
+      console.log("clearing");
+      const timer = setTimeout(() => {
+        setError("");
+        setSuccess("");
+      }, 7000);
+      return () => clearTimeout(timer);
+    }
+  }, [error, success]);
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log("submitting");
+    if (!message || !name || !email) {
+      setError("All fields are required!");
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/email`, {
+        name,
+        email,
+        message,
+      });
+      console.log(res);
+      setSuccess(
+        "Message Sent! Thanks for reaching out! I will reply as soon as possible!"
+      );
+      setMessage("");
+      setName("");
+      setEmail("");
+    } catch (err) {
+      console.log(err);
+      setError(
+        "Hm.. Something went wrong. If issues persist please email me directly at brymurph@gmail.com"
+      );
+    }
+    setLoading(false);
+  };
+
   return (
     <>
       <p className="text-center">
@@ -28,14 +74,17 @@ const ContactView = () => {
           />
           <Form.TextArea
             className="col-span-full"
-            value={msg}
-            handleChange={(e: any) => setMsg(e.target.value)}
+            value={message}
+            handleChange={(e: any) => setMessage(e.target.value)}
             placeholder="Message"
           />
+          <p className="m-1 col-span-10 text-center">{success || error}</p>
           <Button
             className="m-1 col-span-2 col-start-11"
-            text="Send"
+            disabled={loading}
+            text={loading ? "Sending..." : "Send"}
             type="submit"
+            onClick={(e: any) => handleSubmit(e)}
           />
         </Form>
       </div>
