@@ -7,6 +7,9 @@ import { getStrapiMedia } from "../../utils/media";
 import { LinkRenderer } from "../../utils/markdown";
 import NavBar from "../../components/NavBar";
 import ReactMarkdown from "react-markdown";
+import Button from "../../components/Button";
+import Link from "next/link";
+import MarkdownImg from "../../components/MarkdownImg";
 
 const ProjectDetailPage = ({ project }) => {
   return (
@@ -40,9 +43,30 @@ const ProjectDetailPage = ({ project }) => {
             layout="responsive"
           />
         </div>
-        <div className="col-start-4 col-span-6 text-xl py-16">
+        <div className="col-span-6 col-start-4 mt-8">
+          {project.link && (
+            <Link href={project.link}>
+              <a target="_blank">
+                <Button>Visit Site</Button>
+              </a>
+            </Link>
+          )}
+          {project.githubLink && (
+            <Link href={project.githubLink}>
+              <a target="_blank">
+                <Button>Visit Code</Button>
+              </a>
+            </Link>
+          )}
+        </div>
+        <div className="col-start-4 col-span-6 text-xl py-8">
           {project.description ? (
-            <ReactMarkdown renderers={{ link: LinkRenderer }}>
+            <ReactMarkdown
+              renderers={{
+                link: LinkRenderer,
+                image: ({ node }) => <MarkdownImg node={node} />,
+              }}
+            >
               {project.description}
             </ReactMarkdown>
           ) : (

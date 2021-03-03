@@ -42,6 +42,9 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "githubLink": {
+      "type": "string"
     }
   }
 }
