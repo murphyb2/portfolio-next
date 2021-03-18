@@ -24,7 +24,6 @@ const ContactView = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("submitting");
     if (!message || !name || !email) {
       setError("All fields are required!");
       return;
