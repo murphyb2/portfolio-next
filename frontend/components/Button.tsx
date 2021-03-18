@@ -27,7 +27,7 @@ const Button = ({
 
   return (
     <button
-      className={`${className} bg-black text-white px-5 py-2`}
+      className={`${className} bg-black text-white px-5 py-2 transition duration-200 transform hover:-translate-y-1 hover:scale-110`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       type={type}
