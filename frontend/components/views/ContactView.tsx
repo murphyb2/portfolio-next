@@ -53,12 +53,12 @@ const ContactView = () => {
 
   return (
     <>
-      <p className="text-center">
-        Need anything built? Just want to say hello? <br />
-        Email me at brymurph@gmail.com or fill out the form below!
-      </p>
       <div className="grid grid-cols-12">
-        <Form className="grid grid-cols-12 col-start-4 col-span-6">
+        <p className="col-start-2 col-span-10 text-center">
+          Need anything built? Just want to say hello? <br />
+          Email me at brymurph@gmail.com or fill out the form below!
+        </p>
+        <Form className="grid grid-cols-12 col-start-2 col-span-10 md:col-start-4 md:col-span-6">
           <Form.Input
             className="col-span-full"
             value={name}
@@ -79,7 +79,7 @@ const ContactView = () => {
           />
           <p className="m-1 col-span-10 text-center">{success || error}</p>
           <Button
-            className="m-1 col-span-2 col-start-11"
+            className="m-1 col-span-3 col-start-10 md:col-span-2 md:col-start-11"
             disabled={loading}
             text={loading ? "Sending..." : "Send"}
             type="submit"
