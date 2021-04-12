@@ -18,14 +18,29 @@ const ProjectsView = ({ projects }: Props) => {
           <div
             className={`${
               index % 2 < 1 ? "" : ""
-            } grid grid-cols-12 my-12 gap-6 py-5`}
+            } grid grid-cols-12 md:my-12 gap-6 py-5`}
             key={project.id}
           >
             <div
-              className={`${
+              className={`col-start-2 col-span-10 ${
                 index % 2 < 1
-                  ? "order-last col-start-6 col-span-6" // image | description
-                  : "col-start-2 col-span-6" // description | image
+                  ? "md:order-first md:col-start-2 md:col-span-4" // image | description
+                  : "md:order-last md:col-start-8 md:col-span-4" // description | image
+              }`}
+            >
+              <Image
+                src={getStrapiMedia(project.thumbnail)}
+                layout="responsive"
+                height={project.thumbnail.height}
+                width={project.thumbnail.width}
+              />
+            </div>
+
+            <div
+              className={`col-start-2 col-span-10 ${
+                index % 2 < 1
+                  ? "md:col-start-6 md:col-span-6" // image | description
+                  : "md:col-start-2 md:col-span-6" // description | image
               } flex flex-col h-full`}
             >
               <h3
@@ -38,27 +53,13 @@ const ProjectsView = ({ projects }: Props) => {
               <p className={`${index % 2 < 1 ? "" : "text-right"} text-xl`}>
                 {project.shortDescription}
               </p>
-              <div className={`${index % 2 < 1 ? "" : "ml-auto"} my-auto`}>
+              <div className={`mt-5 ${index % 2 < 1 ? "" : "ml-auto"} my-auto`}>
                 <Link href={`/projects/${project.id}`}>
                   <a>
                     <Button>See More</Button>
                   </a>
                 </Link>
               </div>
-            </div>
-            <div
-              className={`${
-                index % 2 < 1
-                  ? "order-first col-start-2 col-span-4" // image | description
-                  : "col-start-8 col-span-4" // description | image
-              }`}
-            >
-              <Image
-                src={getStrapiMedia(project.thumbnail)}
-                layout="responsive"
-                height={project.thumbnail.height}
-                width={project.thumbnail.width}
-              />
             </div>
           </div>
         );
