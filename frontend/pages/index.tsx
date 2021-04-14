@@ -30,7 +30,7 @@ export default function Home({ projects, about }) {
   return (
     <>
       <div className="grid grid-cols-12 h-screen p-3">
-        <div className="md:col-start-2 col-span-full md:col-span-5 flex flex-col md:row-span-10 justify-around">
+        <div className="md:col-start-2 col-span-full sm:col-span-5 flex flex-col sm:row-span-10 justify-around">
           <h1 className="font-display text-4xl md:text-8xl">
             Hi, I'm <br />
             Bryan Murphy
@@ -40,7 +40,7 @@ export default function Home({ projects, about }) {
             Full Stack Engineer
           </h2>
         </div>
-        <div className="col-span-full md:col-start-7 md:col-span-5 my-auto">
+        <div className="col-span-full sm:col-start-7 sm:col-span-5 my-auto">
           <Image
             src="/svg/undraw_solution_mindset.svg"
             alt=""
