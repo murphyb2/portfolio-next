@@ -45,18 +45,19 @@ const ContactView = () => {
     } catch (err) {
       console.log(err);
       setError(
-        "Hm.. Something went wrong. If issues persist please email me directly at brymurph@gmail.com"
+        "Hm.. Something went wrong. If issues persist please email me directly at admin@bryan-murphy-dev.com"
       );
     }
     setLoading(false);
   };
 
-  return (
+  return process.env.EMAIL_ENABLED ? (
     <>
       <div className="grid grid-cols-12">
         <p className="col-start-2 col-span-10 text-center">
           Need anything built? Just want to say hello? <br />
-          Email me at brymurph@gmail.com or fill out the form below!
+          Find me on LinkedIn using the icon below! <br />
+          Or email me at bryan-murphy-dev@gmail.com!
         </p>
         <Form className="grid grid-cols-12 col-start-2 col-span-10 md:col-start-4 md:col-span-6">
           <Form.Input
@@ -77,9 +78,11 @@ const ContactView = () => {
             handleChange={(e: any) => setMessage(e.target.value)}
             placeholder="Message"
           />
-          <p className="m-1 col-span-10 text-center">{success || error}</p>
+          <p className="m-1 col-span-full text-center">{success || error}</p>
           <Button
-            className="m-1 col-span-3 col-start-10 md:col-span-2 md:col-start-11"
+            className={`${
+              loading ? "animate-pulse" : ""
+            } m-1 col-span-4 col-start-9 md:col-span-2 md:col-start-11`}
             disabled={loading}
             text={loading ? "Sending..." : "Send"}
             type="submit"
@@ -88,6 +91,14 @@ const ContactView = () => {
         </Form>
       </div>
     </>
+  ) : (
+    <div className="grid grid-cols-12">
+      <p className="col-start-2 col-span-10 text-center">
+        Need anything built? Just want to say hello? <br />
+        Find me on LinkedIn using the icon below! <br />
+        Or email me at bryan-murphy-dev@gmail.com!
+      </p>
+    </div>
   );
 };
 
