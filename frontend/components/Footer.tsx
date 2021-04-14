@@ -1,9 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-const Footer = () => {
+type Props = {
+  className?: string;
+};
+const Footer = ({ className = "" }: Props) => {
   return (
-    <footer className="flex flex-col m-10 p-10">
+    <footer className={`${className} flex flex-col p-10`}>
       <div className="mx-auto flex space-x-5">
         <a href="https://github.com/murphyb2" target="_blank">
           <Image src="/icons/social/github-brands.svg" height={32} width={32} />

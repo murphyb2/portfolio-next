@@ -14,7 +14,7 @@ const Form = ({ children, className = "" }: Props) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("submitted!");
+        // console.log("submitted!");
       }}
       className={`${className}`}
     >

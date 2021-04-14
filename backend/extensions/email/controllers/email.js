@@ -18,8 +18,8 @@ module.exports = {
     try {
       //Send email to the user
       await strapi.plugins["email"].services.email.send({
-        to: "bryan.murphy.dev@gmail.com",
-        from: "brymurph@gmail.com",
+        to: `${process.env.EMAIL_TO}`,
+        from: `${process.env.EMAIL_FROM}`,
         subject: "New message from your Portfolio site!",
         html: `<h1>Email from ${data.name} at ${data.email}</h1>
         <p>${data.message}</p>`,

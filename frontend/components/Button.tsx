@@ -14,22 +14,12 @@ const Button = ({
   className = "",
   type = "button",
   children,
-  onClick,
+  onClick = null,
   disabled = false,
 }: Props) => {
-  const handleMouseEnter = () => {
-    console.log("im hovering!");
-  };
-
-  const handleMouseLeave = () => {
-    console.log("im not hovering anymore...");
-  };
-
   return (
     <button
       className={`${className} bg-black text-white px-5 py-2 transition duration-200 transform hover:-translate-y-1 hover:scale-110`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       type={type}
       onClick={onClick}
       disabled={disabled}

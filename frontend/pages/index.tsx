@@ -29,60 +29,56 @@ export default function Home({ projects, about }) {
 
   return (
     <>
-      <div className="grid grid-cols-12 h-screen">
-        <Nav className="col-span-full flex justify-center items-center bg-gray-100 mb-8">
-          <Nav.Item className="px-12">
-            <button onClick={handleProjectsScroll}>projects</button>
-          </Nav.Item>
-          <Nav.Item className="px-12">
-            <button onClick={handleAboutScroll}>about</button>
-          </Nav.Item>
-          <Nav.Item className="px-12">
-            <button onClick={handleContactScroll}>contact</button>
-          </Nav.Item>
-        </Nav>
-        <div className="col-start-2 col-span-5 flex flex-col">
-          <h1 className="font-display text-8xl mb-16">
-            Hi, my name is <br />
+      <div className="grid grid-cols-12 h-screen p-3">
+        <div className="md:col-start-2 col-span-full sm:col-span-5 flex flex-col sm:row-span-10 justify-around">
+          <h1 className="font-display text-4xl md:text-8xl">
+            Hi, I'm <br />
             Bryan Murphy
           </h1>
-          <h2 className="text-6xl italic">
+          <h2 className="text-2xl md:text-6xl italic">
             Design Focused <br />
             Full Stack Engineer
           </h2>
-          {/* <div className="mt-auto pb-12 text-center cursor-pointer">
-            <Image
-              src="/svg/chevron-down.svg"
-              alt=""
-              layout="intrinsic"
-              width={30.705}
-              height={18.634}
-              onClick={handleProjectsScroll}
-            />
-          </div> */}
         </div>
-        <div className="col-start-7 col-span-5 items-end">
+        <div className="col-span-full sm:col-start-7 sm:col-span-5 my-auto">
           <Image
             src="/svg/undraw_solution_mindset.svg"
             alt=""
             layout="responsive"
             height={902.402}
             width={815.631}
-            className="col-start-6"
+            className="self-center"
           />
         </div>
+        <Nav className="col-span-full flex justify-center items-center my-auto">
+          <Nav.Item className="px-5 md:px-12">
+            <button className="text-xl" onClick={handleProjectsScroll}>
+              projects
+            </button>
+          </Nav.Item>
+          <Nav.Item className="px-5 md:px-12">
+            <button className="text-xl" onClick={handleAboutScroll}>
+              about
+            </button>
+          </Nav.Item>
+          <Nav.Item className="px-5 md:px-12">
+            <button className="text-xl" onClick={handleContactScroll}>
+              contact
+            </button>
+          </Nav.Item>
+        </Nav>
       </div>
-      <div className="bg-gray-100" ref={projectsRef}>
+      <div className="bg-gray-100" ref={projectsRef} id="projects">
         <div className="grid">
           <SectionTitle title="projects" />
           <ProjectsView projects={projects} />
         </div>
       </div>
-      <div ref={aboutRef} className="grid mb-12">
+      <div ref={aboutRef} className="grid mb-12" id="about">
         <SectionTitle title="about" />
         <AboutView about={about} />
       </div>
-      <div className="bg-gray-100 grid" ref={contactRef}>
+      <div className="bg-gray-100 grid" ref={contactRef} id="contact">
         <SectionTitle title="contact" />
         <div className="mb-12">
           <ContactView />

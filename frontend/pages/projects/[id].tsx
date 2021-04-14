@@ -14,9 +14,9 @@ import MarkdownImg from "../../components/MarkdownImg";
 const ProjectDetailPage = ({ project }) => {
   return (
     <>
-      <NavBar className="my-12" />
-      <div className="grid grid-cols-12 bg-gray-100">
-        <div className="my-7 col-start-2 col-span-10 flex flex-col">
+      <NavBar className="py-10 bg-gray-100" />
+      <div className="grid grid-cols-12">
+        <div className="my-7 mx-5 col-span-full md:col-start-2 md:col-span-10 flex flex-col">
           <div className="flex justify-around">
             <hr
               className="my-auto flex-grow"
@@ -25,7 +25,9 @@ const ProjectDetailPage = ({ project }) => {
                 backgroundColor: "black",
               }}
             />
-            <h1 className="mx-7 font-display text-4xl">{project.title}</h1>
+            <h1 className="mx-2 md:mx-7 font-display text-2xl md:text-4xl text-center">
+              {project.title}
+            </h1>
             <hr
               className="my-auto flex-grow"
               style={{
@@ -35,7 +37,7 @@ const ProjectDetailPage = ({ project }) => {
             />
           </div>
         </div>
-        <div className="col-start-4 col-span-6">
+        <div className="col-start-2 col-span-10 md:col-start-4 md:col-span-6">
           <Image
             src={getStrapiMedia(project.thumbnail)}
             height={project.thumbnail.height}
@@ -43,7 +45,7 @@ const ProjectDetailPage = ({ project }) => {
             layout="responsive"
           />
         </div>
-        <div className="col-span-6 col-start-4 mt-8">
+        <div className="col-start-2 col-span-10 md:col-start-4 md:col-span-6 mt-8">
           {project.link && (
             <Link href={project.link}>
               <a target="_blank">
@@ -59,7 +61,7 @@ const ProjectDetailPage = ({ project }) => {
             </Link>
           )}
         </div>
-        <div className="col-start-4 col-span-6 text-xl py-8">
+        <div className="col-start-2 col-span-10 md:col-start-4 md:col-span-6 text-xl py-8">
           {project.description ? (
             <ReactMarkdown
               renderers={{
@@ -74,7 +76,7 @@ const ProjectDetailPage = ({ project }) => {
           )}
         </div>
       </div>
-      <Footer />
+      <Footer className="bg-gray-100" />
     </>
   );
 };

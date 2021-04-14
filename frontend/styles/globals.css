@@ -5,6 +5,11 @@
 /* Import Adobe fonts */
 @import url("https://use.typekit.net/alm6vqx.css");
 
+/* For debugging overflow issues */
+/* * {
+  border: 1px solid #f00 !important;
+} */
+
 strong {
   font-weight: 500;
 }

@@ -1,3 +1,9 @@
-# Strapi application
+# Development Portfolio CMS
 
-A quick description of your strapi application
+Developed with Strapi.js
+
+Pushing subdirectory to deployment
+
+```shell
+  git subtree push --prefix backend heroku master
+```

@@ -30,7 +30,8 @@
       "model": "file",
       "via": "related",
       "allowedTypes": [
-        "files"
+        "files",
+        "images"
       ],
       "plugin": "upload",
       "required": false
