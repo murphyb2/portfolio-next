@@ -30,7 +30,7 @@ export default function Home({ projects, about }) {
   return (
     <>
       <div className="grid grid-cols-12 h-screen p-3">
-        <div className="md:col-start-2 col-span-full md:col-span-5 flex flex-col md:row-span-10 justify-between">
+        <div className="md:col-start-2 col-span-full md:col-span-5 flex flex-col md:row-span-10 justify-around">
           <h1 className="font-display text-4xl md:text-8xl">
             Hi, I'm <br />
             Bryan Murphy
@@ -40,7 +40,7 @@ export default function Home({ projects, about }) {
             Full Stack Engineer
           </h2>
         </div>
-        <div className="col-span-full md:col-start-7 md:col-span-5 mt-auto">
+        <div className="col-span-full md:col-start-7 md:col-span-5 my-auto">
           <Image
             src="/svg/undraw_solution_mindset.svg"
             alt=""
@@ -50,15 +50,21 @@ export default function Home({ projects, about }) {
             className="self-center"
           />
         </div>
-        <Nav className="col-span-full flex justify-center items-center">
+        <Nav className="col-span-full flex justify-center items-center my-auto">
           <Nav.Item className="px-5 md:px-12">
-            <button onClick={handleProjectsScroll}>projects</button>
+            <button className="text-xl" onClick={handleProjectsScroll}>
+              projects
+            </button>
           </Nav.Item>
           <Nav.Item className="px-5 md:px-12">
-            <button onClick={handleAboutScroll}>about</button>
+            <button className="text-xl" onClick={handleAboutScroll}>
+              about
+            </button>
           </Nav.Item>
           <Nav.Item className="px-5 md:px-12">
-            <button onClick={handleContactScroll}>contact</button>
+            <button className="text-xl" onClick={handleContactScroll}>
+              contact
+            </button>
           </Nav.Item>
         </Nav>
       </div>
