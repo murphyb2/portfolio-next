@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Image from "next/image";
-// import { Document, Page, pdfjs } from "react-pdf";
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 import Modal from "react-modal";
 
@@ -14,30 +12,30 @@ type Props = {
 };
 
 Modal.setAppElement("#__next");
-// Modal.defaultStyles = {
-//   overlay: {
-//     position: "fixed",
-//     top: 0,
-//     left: 0,
-//     right: 0,
-//     bottom: 0,
-//     backgroundColor: "rgba(255, 255, 255, 0.75)",
-//   },
-//   content: {
-//     position: "absolute",
-//     top: "5px",
-//     left: "5px",
-//     right: "5px",
-//     bottom: "5px",
-//     border: "1px solid #ccc",
-//     background: "#fff",
-//     overflow: "auto",
-//     WebkitOverflowScrolling: "touch",
-//     borderRadius: "4px",
-//     outline: "none",
-//     // padding: "20px",
-//   },
-// };
+Modal.defaultStyles = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
+  },
+  content: {
+    position: "absolute",
+    top: "5px",
+    left: "5px",
+    right: "5px",
+    bottom: "5px",
+    border: "1px solid #ccc",
+    background: "#fff",
+    overflow: "auto",
+    WebkitOverflowScrolling: "touch",
+    borderRadius: "4px",
+    outline: "none",
+    // padding: "20px",
+  },
+};
 
 const AboutView = ({ about }: Props) => {
   const [open, setOpen] = useState(false);
@@ -67,15 +65,17 @@ const AboutView = ({ about }: Props) => {
           Resume
         </Button>
         <Modal isOpen={open}>
-          <Image
-            src={getStrapiMedia(about.resume)}
-            height={about.resume.height}
-            width={about.resume.width}
-            layout="responsive"
-          />
-          <Button className="w-1/4 mx-auto" onClick={() => setOpen(false)}>
+          <Button
+            className="absolute w-1/4 z-50 m-2"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
+          <Image
+            src={getStrapiMedia(about.resume)}
+            layout="fill"
+            objectFit="contain"
+          />
         </Modal>
       </div>
     </>

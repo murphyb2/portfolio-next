@@ -1,6 +1,3 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import { useRef } from "react";
@@ -13,7 +10,6 @@ import ContactView from "../components/views/ContactView";
 import AboutView from "../components/views/AboutView";
 import ProjectsView from "../components/views/ProjectsView";
 import SectionTitle from "../components/SectionTitle";
-import Link from "next/link";
 
 export default function Home({ projects, about }) {
   const projectsRef: any = useRef();
