@@ -10,6 +10,9 @@
   border: 1px solid #f00 !important;
 } */
 
+/* html {
+  scroll-behavior: smooth;
+} */
 strong {
   font-weight: 500;
 }

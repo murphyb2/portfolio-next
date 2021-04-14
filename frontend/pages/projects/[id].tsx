@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+
 import Image from "next/image";
 import { GetStaticPaths, GetStaticProps } from "next";
 import axios from "axios";

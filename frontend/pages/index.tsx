@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import { useRef } from "react";
@@ -10,6 +13,7 @@ import ContactView from "../components/views/ContactView";
 import AboutView from "../components/views/AboutView";
 import ProjectsView from "../components/views/ProjectsView";
 import SectionTitle from "../components/SectionTitle";
+import Link from "next/link";
 
 export default function Home({ projects, about }) {
   const projectsRef: any = useRef();
@@ -68,17 +72,17 @@ export default function Home({ projects, about }) {
           </Nav.Item>
         </Nav>
       </div>
-      <div className="bg-gray-100" ref={projectsRef}>
+      <div className="bg-gray-100" ref={projectsRef} id="projects">
         <div className="grid">
           <SectionTitle title="projects" />
           <ProjectsView projects={projects} />
         </div>
       </div>
-      <div ref={aboutRef} className="grid mb-12">
+      <div ref={aboutRef} className="grid mb-12" id="about">
         <SectionTitle title="about" />
         <AboutView about={about} />
       </div>
-      <div className="bg-gray-100 grid" ref={contactRef}>
+      <div className="bg-gray-100 grid" ref={contactRef} id="contact">
         <SectionTitle title="contact" />
         <div className="mb-12">
           <ContactView />
