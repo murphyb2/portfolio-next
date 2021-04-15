@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import Button from "../Button";
 
 import { getStrapiMedia, getStrapiURL } from "../../utils/media";
+import FadeInSection from "../FadeInSection";
 
 type Props = {
   about: any;
@@ -47,12 +48,14 @@ const AboutView = ({ about }: Props) => {
     <>
       <div className="grid grid-cols-12">
         <div className="col-start-2 col-span-10 md:col-start-4 md:col-span-6">
-          <Image
-            src={getStrapiMedia(about.profilePic)}
-            layout="responsive"
-            height={about.profilePic.height}
-            width={about.profilePic.width}
-          />
+          <FadeInSection>
+            <Image
+              src={getStrapiMedia(about.profilePic)}
+              layout="responsive"
+              height={about.profilePic.height}
+              width={about.profilePic.width}
+            />
+          </FadeInSection>
         </div>
         <p className="col-start-2 col-span-10 md:col-start-4 md:col-span-6 text-xl my-16">
           {about.body}

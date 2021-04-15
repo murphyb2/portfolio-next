@@ -8,12 +8,18 @@ const FadeInSection = ({ children, initialVisibility = true }: Props) => {
   const [isVisibile, setVisible] = useState(initialVisibility);
   const domRef = useRef();
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => setVisible(entry.isIntersecting));
-    });
-    observer.observe(domRef.current);
-    return () => observer.unobserve(domRef.current);
-  }, []);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => setVisible(entry.isIntersecting));
+      },
+      {
+        threshold: 0.4,
+      }
+    );
+    const { current } = domRef;
+    observer.observe(current);
+    return () => observer.unobserve(current);
+  }, [domRef.current]);
 
   return (
     <div
