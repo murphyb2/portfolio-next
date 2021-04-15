@@ -10,6 +10,7 @@ import ContactView from "../components/views/ContactView";
 import AboutView from "../components/views/AboutView";
 import ProjectsView from "../components/views/ProjectsView";
 import SectionTitle from "../components/SectionTitle";
+import FadeInSection from "../components/FadeInSection";
 
 export default function Home({ projects, about }) {
   const projectsRef: any = useRef();
