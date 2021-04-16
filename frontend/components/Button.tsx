@@ -7,6 +7,8 @@ type Props = {
   children?: ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
+  hoverAnimate?: boolean;
+  overrideDefaultStyles?: string;
 };
 
 const Button = ({
@@ -14,12 +16,22 @@ const Button = ({
   className = "",
   type = "button",
   children,
+  overrideDefaultStyles = null,
   onClick = null,
   disabled = false,
+  hoverAnimate = true,
 }: Props) => {
   return (
     <button
-      className={`${className} bg-black text-white px-5 py-2 transition duration-200 transform hover:-translate-y-1 hover:scale-110`}
+      className={
+        overrideDefaultStyles
+          ? overrideDefaultStyles
+          : `${className} bg-black text-white px-5 py-2 ${
+              hoverAnimate
+                ? "transition duration-200 transform hover:-translate-y-1 hover:scale-110"
+                : ""
+            } `
+      }
       type={type}
       onClick={onClick}
       disabled={disabled}
