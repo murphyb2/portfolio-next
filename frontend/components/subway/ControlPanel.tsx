@@ -53,9 +53,6 @@ const ControlPanel = ({
             label="Monthly?"
           />
           {monthly && (
-            // <div className="grid">
-            //   <p className="place-self-center font-bold">{months[month]}</p>
-            // </div>
             <Incrementer
               nextLabel={"Next"}
               prevLabel={"Previous"}

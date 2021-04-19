@@ -25,14 +25,14 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
   const [selectedStation, setSelectedStation] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [layers, setLayers] = useState([]);
-  const [dataYear, setDataYear] = useState(2021);
+  const [dataYear, setDataYear] = useState(2020);
   const [monthly, setMonthly] = useState(true);
   const [dataMonth, setDataMonth] = useState(1);
 
   const INITIAL_VIEW_STATE = {
     longitude: -73.966537,
     latitude: 40.757095,
-    zoom: 11,
+    zoom: 10,
     pitch: 45,
     bearing: 0,
     width: "100vw",
@@ -86,11 +86,9 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
     extruded: true,
     radius: 150,
     opacity: 0.6,
-    elevationScale: 10,
-    getPosition: (d) =>
-      monthly
-        ? [Number(d.gtfs_longitude), Number(d.gtfs_latitude)]
-        : [Number(d.longitude), Number(d.latitude)],
+    elevationScale:
+      aggregate.entries[`${dataYear}`].total_year_entries__max / 1000000,
+    getPosition: (d) => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
     getElevationWeight: (d) => {
       return monthly
         ? d.monthly_entries
@@ -123,7 +121,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
         {...viewport}
         onViewportChange={(viewport) => setViewport(viewport)}
       >
-        {showPopup && (
+        {/* {showPopup && (
           <Popup
             latitude={selectedStation.latitude}
             longitude={selectedStation.longitude}
@@ -142,7 +140,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
             <p>North Direction: {selectedStation.north}</p>
             <p>South Direction: {selectedStation.south}</p>
           </Popup>
-        )}
+        )} */}
         {/* {markers} */}
         <DeckGL
           viewState={viewport}
@@ -155,7 +153,10 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
                 `${object.stop_name}\nDaytime Routes: ${object.daytime_routes}\nNorth Direction Label: ${object.north_direction_label}\nSouth Direction Label: ${object.south_direction_label}\n`;
               const stops = object?.points?.map((s) => `${s.source.stop_name}`);
               const entries = object?.points?.reduce(
-                (acc, cur) => acc + Number(cur.source.total_year_entries),
+                (acc, cur) =>
+                  acc + monthly
+                    ? Number(cur.source.monthly_entries)
+                    : Number(cur.source.total_year_entries),
                 0
               );
               const exits = object?.points?.reduce(
@@ -167,13 +168,9 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
                 ? station
                 : stops.reduce((acc, stop) => `${acc}\n ${stop}`) +
                     `\nTotal Entries: ${entries}` +
-                    `\nTotal Exits: ${exits}`;
+                    `${monthly ? "" : `\nTotal Exits: ${exits}`}`;
             }
             return null;
-            // console.log(object?.stop_name);
-            // const station = object?.stop_name;
-            // console.log(object?.points?.map((s) => s.source));
-            // return object && `${object.stop_name}\n${object.daytime_routes}`;
           }}
         />
       </ReactMapGL>
@@ -196,19 +193,19 @@ export const getStaticProps: GetStaticProps = async () => {
     `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/stations`
   );
   const yearCounts2019 = await axios.get(
-    `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/2019`
+    `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/year/2019`
   );
   const monthlyCounts2019 = await axios.get(
     `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/month/2019`
   );
   const yearCounts2020 = await axios.get(
-    `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/2020`
+    `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/year/2020`
   );
   const monthlyCounts2020 = await axios.get(
     `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/month/2020`
   );
   const yearCounts2021 = await axios.get(
-    `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/2021`
+    `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/year/2021`
   );
   const monthlyCounts2021 = await axios.get(
     `${process.env.NEXT_PUBLIC_SUBWAY_API_URL}/month/2021`
