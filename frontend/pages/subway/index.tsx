@@ -86,14 +86,12 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
     extruded: true,
     radius: 150,
     opacity: 0.6,
-    elevationScale:
-      aggregate.entries[`${dataYear}`].total_year_entries__max / 1000000,
+    elevationScale: aggregate.entries[dataYear].entries__max / 10000,
     getPosition: (d) => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
     getElevationWeight: (d) => {
       return monthly
         ? d.monthly_entries
-        : Number(d.total_year_entries) /
-            aggregate.entries[dataYear].total_year_entries__max;
+        : Number(d.entries) / aggregate.entries[dataYear].entries__max;
     },
   });
 
@@ -175,7 +173,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
         />
       </ReactMapGL>
       <ControlPanel
-        setYear={setDataYear}
+        setYear={(y) => setDataYear(Number(y))}
         setMonthly={() => setMonthly(!monthly)}
         monthly={monthly}
         month={dataMonth}
