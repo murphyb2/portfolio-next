@@ -89,9 +89,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
     elevationScale: aggregate.entries[dataYear].entries__max / 10000,
     getPosition: (d) => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
     getElevationWeight: (d) => {
-      return monthly
-        ? d.monthly_entries
-        : Number(d.entries) / aggregate.entries[dataYear].entries__max;
+      return monthly ? d.monthly_entries : d.total_year_entries;
     },
   });
 
