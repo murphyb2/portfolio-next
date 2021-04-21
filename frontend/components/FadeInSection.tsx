@@ -2,18 +2,20 @@ import React, { ReactNode, useEffect, useRef, useState } from "react";
 
 type Props = {
   children: ReactNode;
-  initialVisibility?: boolean;
 };
-const FadeInSection = ({ children, initialVisibility = true }: Props) => {
-  const [isVisibile, setVisible] = useState(initialVisibility);
+const FadeInSection = ({ children }: Props) => {
+  const [isVisible, setVisible] = useState(false);
   const domRef = useRef();
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => setVisible(entry.isIntersecting));
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          return setVisible(entry.isIntersecting);
+        });
       },
       {
-        threshold: 0.4,
+        threshold: 0.3,
       }
     );
     const { current } = domRef;
@@ -23,7 +25,7 @@ const FadeInSection = ({ children, initialVisibility = true }: Props) => {
 
   return (
     <div
-      className={`fade-in-section ${isVisibile ? "is-visible" : ""}`}
+      className={`fade-in-section ${isVisible ? "is-visible" : ""}`}
       ref={domRef}
     >
       {children}

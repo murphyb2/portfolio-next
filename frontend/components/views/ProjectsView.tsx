@@ -13,7 +13,7 @@ type Props = {
 
 const ProjectsView = ({ projects }: Props) => {
   return (
-    <div>
+    <>
       {projects?.map((project, index) => {
         return (
           <FadeInSection key={project.id}>
@@ -68,7 +68,7 @@ const ProjectsView = ({ projects }: Props) => {
           </FadeInSection>
         );
       })}
-    </div>
+    </>
   );
 };
 
