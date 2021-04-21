@@ -18,9 +18,19 @@ const Incrementer = ({
 }: Props) => {
   return (
     <div className={`${className}`}>
-      <button onClick={handleDecrement}>{prevLabel}</button>
-      <p className="font-bold">{value}</p>
-      <button onClick={handleIncrement}>{nextLabel}</button>
+      <button
+        onClick={handleDecrement}
+        className="bg-black text-white px-3 py-1"
+      >
+        {prevLabel}
+      </button>
+      <p className="font-bold my-auto">{value}</p>
+      <button
+        onClick={handleIncrement}
+        className="bg-black text-white px-3 py-1"
+      >
+        {nextLabel}
+      </button>
     </div>
   );
 };

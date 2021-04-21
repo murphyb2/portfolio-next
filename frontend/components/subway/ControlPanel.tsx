@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Button from "../Button";
+import React, { useState } from "react";
 import Incrementer from "../Incrementer";
 import MultiToggle from "../MultiToggle";
-import Toggle from "../Toggle";
 
 const months = {
   1: "January",
@@ -27,20 +25,26 @@ const ControlPanel = ({
   month,
   setDataMonth,
 }) => {
-  const [visible, setVisible] = useState(true);
-
+  const [visible, setVisible] = useState(false);
+  const handleSetMonthly = (val) => {
+    if (val == "Monthly") {
+      setMonthly(true);
+    } else {
+      setMonthly(false);
+    }
+  };
   return (
     <div
       className={`fixed ${
         visible
-          ? "top-0 right-0 max-w-xs bg-gray-100 m-3 p-3"
-          : "top-0 left-0 right-0"
+          ? "top-0 right-0 left-0 md:left-auto md:max-w-xs bg-gray-100 m-3 p-3"
+          : "top-0 left-0 right-0 m-3"
       }`}
     >
       {visible && (
         <>
           <div
-            className="cursor-pointer absolute top-0 right-0 p-2 px-3"
+            className="cursor-pointer absolute top-0 right-0 p-2 px-3 mt-2 mr-2 bg-black text-white"
             onClick={() => setVisible(false)}
           >
             hide
@@ -54,15 +58,16 @@ const ControlPanel = ({
             <li>Bearing: {viewportState.bearing}</li>
           </ul>
           <hr className="border-1 my-3" />
-          <Toggle
-            checked={monthly}
-            handleToggle={setMonthly}
-            label="Monthly?"
+
+          <MultiToggle
+            className="flex justify-center"
+            labels={["Monthly", "Yearly"]}
+            handleSelectionChanged={handleSetMonthly}
           />
           {monthly && (
             <Incrementer
               nextLabel={"Next"}
-              prevLabel={"Previous"}
+              prevLabel={"Prev"}
               value={months[month]}
               handleDecrement={() => setDataMonth(Math.max(1, month - 1))}
               handleIncrement={() => setDataMonth(Math.min(12, month + 1))}
@@ -71,6 +76,7 @@ const ControlPanel = ({
           )}
           <hr className="border-1 my-3" />
           <MultiToggle
+            className="flex justify-center"
             labels={["2021", "2020", "2019"]}
             handleSelectionChanged={setYear}
           />
@@ -96,7 +102,7 @@ const ControlPanel = ({
             <div>{monthly ? `Month: ${months[month]}` : `Year: ${year}`}</div>
           </div>
           <div
-            className="cursor-pointer bg-gray-100 p-3 mb-auto"
+            className="cursor-pointer bg-black text-white p-3 mb-auto"
             onClick={() => setVisible(true)}
           >
             show controls

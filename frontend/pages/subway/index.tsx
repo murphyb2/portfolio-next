@@ -128,7 +128,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
       <ControlPanel
         year={dataYear}
         setYear={(y) => setDataYear(Number(y))}
-        setMonthly={() => setMonthly(!monthly)}
+        setMonthly={(val: boolean) => setMonthly(val)}
         monthly={monthly}
         month={dataMonth}
         setDataMonth={setDataMonth}
