@@ -7,14 +7,6 @@ import { HexagonLayer } from "@deck.gl/aggregation-layers";
 import { ScatterplotLayer } from "@deck.gl/layers";
 import ControlPanel from "../../components/subway/ControlPanel";
 
-const boroughs = {
-  M: "Manhattan",
-  Bk: "Brooklyn",
-  Q: "Queens",
-  Bx: "Bronx",
-  SI: "Staten Island",
-};
-
 const years = {
   2021: 0,
   2020: 1,
@@ -39,43 +31,6 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
     height: "100vh",
   };
   const [viewport, setViewport] = useState(INITIAL_VIEW_STATE);
-
-  // const handleShowPopup = (station) => {
-  //   setSelectedStation({
-  //     latitude: Number(station.gtfs_latitude),
-  //     longitude: Number(station.gtfs_longitude),
-  //     name: station.stop_name,
-  //     division: station.division,
-  //     line: station.line,
-  //     borough: boroughs[station.borough],
-  //     daytime_routes: station.daytime_routes,
-  //     structure: station.structure,
-  //     north: station.north_direction_label,
-  //     south: station.south_direction_label,
-  //   });
-  //   setShowPopup(true);
-  // };
-
-  // Only rerender markers if props.data has changed
-  // const markers = useMemo(
-  //   () =>
-  //     stations.map((station) => (
-  //       <Marker
-  //         key={station.id}
-  //         latitude={Number(station.gtfs_latitude)}
-  //         longitude={Number(station.gtfs_longitude)}
-  //       >
-  //         <div
-  //           onTouchEnd={() => handleShowPopup(station)}
-  //           onMouseEnter={() => handleShowPopup(station)}
-  //           className="flex h-3 w-3 cursor-pointer"
-  //         >
-  //           <div className="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></div>
-  //         </div>
-  //       </Marker>
-  //     )),
-  //   [stations]
-  // );
 
   const hexLayer = new HexagonLayer({
     id: "hexagon-layer",
@@ -171,8 +126,9 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
         />
       </ReactMapGL>
       <ControlPanel
+        year={dataYear}
         setYear={(y) => setDataYear(Number(y))}
-        setMonthly={() => setMonthly(!monthly)}
+        setMonthly={(val: boolean) => setMonthly(val)}
         monthly={monthly}
         month={dataMonth}
         setDataMonth={setDataMonth}

@@ -19,7 +19,7 @@ const MultiToggle = ({
     handleSelectionChanged(selected);
   }, [selected]);
   return (
-    <>
+    <div className={`${className}`}>
       {labels &&
         labels.map((label) => (
           <Button
@@ -32,7 +32,7 @@ const MultiToggle = ({
             {label}
           </Button>
         ))}
-    </>
+    </div>
   );
 };
 
