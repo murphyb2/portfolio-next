@@ -35,15 +35,15 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
   const hexLayer = new HexagonLayer({
     id: "hexagon-layer",
     data: monthly
-      ? monthlyCounts[years[dataYear]].filter((s) => s.month == dataMonth)
+      ? monthlyCounts[years[dataYear]].filter(s => s.month == dataMonth)
       : yearCounts[years[dataYear]],
     pickable: true,
     extruded: true,
     radius: 150,
     opacity: 0.6,
     elevationScale: aggregate.entries[dataYear].entries__max / 10000,
-    getPosition: (d) => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
-    getElevationWeight: (d) => {
+    getPosition: d => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
+    getElevationWeight: d => {
       return monthly ? d.monthly_entries : d.total_year_entries;
     },
   });
@@ -59,8 +59,8 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
     radiusMinPixels: 2,
     radiusMaxPixels: 50,
     lineWidthMinPixels: 1,
-    getPosition: (d) => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
-    getFillColor: (d) => [255, 140, 0],
+    getPosition: d => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
+    getFillColor: d => [255, 140, 0],
     // getRadius: (d) => 10,
     // getLineColor: (d) => [0, 0, 0],
   });
@@ -70,7 +70,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
       <ReactMapGL
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
         {...viewport}
-        onViewportChange={(viewport) => setViewport(viewport)}
+        onViewportChange={viewport => setViewport(viewport)}
       >
         {/* {showPopup && (
           <Popup
@@ -102,7 +102,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
               const station =
                 object.stop_name &&
                 `${object.stop_name}\nDaytime Routes: ${object.daytime_routes}\nNorth Direction Label: ${object.north_direction_label}\nSouth Direction Label: ${object.south_direction_label}\n`;
-              const stops = object?.points?.map((s) => `${s.source.stop_name}`);
+              const stops = object?.points?.map(s => `${s.source.stop_name}`);
               const entries = object?.points?.reduce(
                 (acc, cur) =>
                   acc + monthly
@@ -127,7 +127,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
       </ReactMapGL>
       <ControlPanel
         year={dataYear}
-        setYear={(y) => setDataYear(Number(y))}
+        setYear={y => setDataYear(Number(y))}
         setMonthly={(val: boolean) => setMonthly(val)}
         monthly={monthly}
         month={dataMonth}
@@ -181,5 +181,6 @@ export const getStaticProps: GetStaticProps = async () => {
       ],
       aggregate: aggregate.data,
     },
+    revalidate: Number(process.env.SUBWAY_ISR_SECONDS),
   };
 };
