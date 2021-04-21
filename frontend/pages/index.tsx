@@ -97,11 +97,11 @@ export const getStaticProps: GetStaticProps = async () => {
     `${process.env.NEXT_PUBLIC_API_URL}/projects?_sort=published_at:DESC`
   );
   const about = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about`);
-
   return {
     props: {
       projects: projects.data,
       about: about.data,
     },
+    revalidate: Number(process.env.ISR_SECONDS),
   };
 };
