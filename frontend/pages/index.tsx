@@ -94,7 +94,7 @@ export default function Home({ projects, about }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const projects = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/projects`
+    `${process.env.NEXT_PUBLIC_API_URL}/projects?_sort=published_at:DESC`
   );
   const about = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/about`);
 
