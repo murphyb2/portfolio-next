@@ -20,6 +20,7 @@ const months = {
 };
 const ControlPanel = ({
   viewportState,
+  year,
   setYear,
   setMonthly,
   monthly,
@@ -29,7 +30,13 @@ const ControlPanel = ({
   const [visible, setVisible] = useState(true);
 
   return (
-    <div className={`fixed top-0 right-0 max-w-lg m-3 p-3 bg-gray-100`}>
+    <div
+      className={`fixed ${
+        visible
+          ? "top-0 right-0 max-w-xs bg-gray-100 m-3 p-3"
+          : "top-0 left-0 right-0"
+      }`}
+    >
       {visible && (
         <>
           <div
@@ -67,11 +74,33 @@ const ControlPanel = ({
             labels={["2021", "2020", "2019"]}
             handleSelectionChanged={setYear}
           />
+          <hr className="border-1 my-3" />
+          <div className="italic">
+            <h3 className="font-bold">Legend</h3>
+            <ul className="list-interpunct">
+              <li>
+                Column color represents the number of stations clustered
+                together. More stations yields a more red color.
+              </li>
+              <li>
+                Column height represents the number of entries into a station in
+                the set time period. More entries yields taller column height.
+              </li>
+            </ul>
+          </div>
         </>
       )}
       {!visible && (
-        <div className="cursor-pointer" onClick={() => setVisible(true)}>
-          show controls
+        <div className="flex justify-between w-full">
+          <div className="bg-gray-100 p-3">
+            <div>{monthly ? `Month: ${months[month]}` : `Year: ${year}`}</div>
+          </div>
+          <div
+            className="cursor-pointer bg-gray-100 p-3 mb-auto"
+            onClick={() => setVisible(true)}
+          >
+            show controls
+          </div>
         </div>
       )}
     </div>
