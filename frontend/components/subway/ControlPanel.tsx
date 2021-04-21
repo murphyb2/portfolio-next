@@ -100,6 +100,17 @@ const ControlPanel = ({
         <div className="flex justify-between w-full">
           <div className="bg-gray-100 p-3">
             <div>{monthly ? `Month: ${months[month]}` : `Year: ${year}`}</div>
+            {monthly && (
+              <Incrementer
+                hideValue={true}
+                nextLabel={"Next"}
+                prevLabel={"Prev"}
+                value={months[month]}
+                handleDecrement={() => setDataMonth(Math.max(1, month - 1))}
+                handleIncrement={() => setDataMonth(Math.min(12, month + 1))}
+                className="flex justify-between my-3"
+              />
+            )}
           </div>
           <div
             className="cursor-pointer bg-black text-white p-3 mb-auto"

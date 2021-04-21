@@ -7,6 +7,7 @@ type Props = {
   handleIncrement: any;
   handleDecrement: any;
   className?: string;
+  hideValue?: boolean;
 };
 const Incrementer = ({
   nextLabel,
@@ -15,6 +16,7 @@ const Incrementer = ({
   handleIncrement,
   value,
   className = "",
+  hideValue = false,
 }: Props) => {
   return (
     <div className={`${className}`}>
@@ -24,11 +26,8 @@ const Incrementer = ({
       >
         {prevLabel}
       </button>
-      <p className="font-bold my-auto">{value}</p>
-      <button
-        onClick={handleIncrement}
-        className="bg-black text-white px-3 py-1"
-      >
+      {!hideValue && <p className="font-bold my-auto">{value}</p>}
+      <button onClick={handleIncrement} className="bg-white  px-3 py-1">
         {nextLabel}
       </button>
     </div>
