@@ -95,6 +95,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       project: project.data[0],
     },
+    revalidate: Number(process.env.ISR_SECONDS),
   };
 };
 
