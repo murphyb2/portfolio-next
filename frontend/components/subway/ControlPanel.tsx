@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../Button";
 import Incrementer from "../Incrementer";
 import MultiToggle from "../MultiToggle";
 
@@ -94,6 +95,14 @@ const ControlPanel = ({
               </li>
             </ul>
           </div>
+          <hr className="border-1 my-3" />
+          <a
+            href="https://bryan-murphy-dev.com/projects/60771366bd6b2100150aff73"
+            target="_blank"
+            className="flex justify-center"
+          >
+            <Button>Read More Details</Button>
+          </a>
         </>
       )}
       {!visible && (
