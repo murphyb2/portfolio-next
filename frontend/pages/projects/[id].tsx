@@ -45,7 +45,7 @@ const ProjectDetailPage = ({ project }) => {
             layout="responsive"
           />
         </div>
-        <div className="col-start-2 col-span-10 md:col-start-4 md:col-span-6 mt-8">
+        <div className="col-start-2 grid justify-items-center md:justify-items-start col-span-10 mt-4 md:col-start-4 md:col-span-1 md:mt-8">
           {project.link && (
             <Link href={project.link}>
               <a target="_blank">
@@ -53,13 +53,16 @@ const ProjectDetailPage = ({ project }) => {
               </a>
             </Link>
           )}
-          {project.githubLink && (
-            <Link href={project.githubLink}>
-              <a target="_blank">
-                <Button>Visit Code</Button>
-              </a>
-            </Link>
-          )}
+        </div>
+        <div className="col-start-2 col-span-10 mx-auto mt-4 md:col-start-6 md:col-span-4 md:ml-auto md:mr-0 md:mt-8">
+          {project.links &&
+            project.links.map((l) => (
+              <Link href={l.url} key={l.id}>
+                <a target="_blank" className="mx-1 md:ml-2 md:mr-0">
+                  <Button>{l.label}</Button>
+                </a>
+              </Link>
+            ))}
         </div>
         <div className="col-start-2 col-span-10 md:col-start-4 md:col-span-6 text-xl py-8">
           {project.description ? (

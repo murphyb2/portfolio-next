@@ -43,8 +43,10 @@
     "description": {
       "type": "richtext"
     },
-    "githubLink": {
-      "type": "string"
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "project-components.link"
     }
   }
 }
