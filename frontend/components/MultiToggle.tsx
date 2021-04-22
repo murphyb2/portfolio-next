@@ -6,6 +6,7 @@ type Props = {
   disabled?: boolean;
   labels: string[];
   handleSelectionChanged: any;
+  initialSelectedIndex?: number;
 };
 
 const MultiToggle = ({
@@ -13,8 +14,9 @@ const MultiToggle = ({
   disabled = false,
   labels,
   handleSelectionChanged,
+  initialSelectedIndex = 0,
 }: Props) => {
-  const [selected, setSelected] = useState(labels[0]);
+  const [selected, setSelected] = useState(labels[initialSelectedIndex]);
   useEffect(() => {
     handleSelectionChanged(selected);
   }, [selected]);

@@ -80,6 +80,7 @@ const ControlPanel = ({
             className="flex justify-center"
             labels={["2021", "2020", "2019"]}
             handleSelectionChanged={setYear}
+            initialSelectedIndex={1}
           />
           <hr className="border-1 my-3" />
           <div className="italic">
