@@ -109,6 +109,7 @@ const ControlPanel = ({
       {!visible && (
         <div className="flex justify-between w-full">
           <div className="bg-gray-100 p-3">
+            <div>{monthly ? `Year: ${year}` : null}</div>
             <div>{monthly ? `Month: ${months[month]}` : `Year: ${year}`}</div>
             {monthly && (
               <Incrementer

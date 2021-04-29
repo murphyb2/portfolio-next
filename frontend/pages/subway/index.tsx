@@ -1,7 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState /* useMemo */ } from "react";
 import { GetStaticProps } from "next";
 import axios from "axios";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL /* ,{ Marker, Popup } */ from "react-map-gl";
 import DeckGL from "@deck.gl/react";
 import { HexagonLayer } from "@deck.gl/aggregation-layers";
 import { ScatterplotLayer } from "@deck.gl/layers";
@@ -14,9 +14,9 @@ const years = {
 };
 
 const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
-  const [selectedStation, setSelectedStation] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
-  const [layers, setLayers] = useState([]);
+  // const [selectedStation, setSelectedStation] = useState(null);
+  // const [showPopup, setShowPopup] = useState(false);
+  // const [layers, setLayers] = useState([]);
   const [dataYear, setDataYear] = useState(2020);
   const [monthly, setMonthly] = useState(true);
   const [dataMonth, setDataMonth] = useState(1);
@@ -35,15 +35,17 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
   const hexLayer = new HexagonLayer({
     id: "hexagon-layer",
     data: monthly
-      ? monthlyCounts[years[dataYear]].filter(s => s.month == dataMonth)
+      ? monthlyCounts[years[dataYear]].filter((s) => s.month == dataMonth)
       : yearCounts[years[dataYear]],
     pickable: true,
     extruded: true,
     radius: 150,
     opacity: 0.6,
-    elevationScale: aggregate.entries[dataYear].entries__max / 10000,
-    getPosition: d => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
-    getElevationWeight: d => {
+    elevationRange: [0, aggregate.entries["2019"].entries__max],
+    elevationDomain: [0, 6000000],
+    elevationScale: 0.1,
+    getPosition: (d) => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
+    getElevationWeight: (d) => {
       return monthly ? d.monthly_entries : d.total_year_entries;
     },
   });
@@ -59,8 +61,8 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
     radiusMinPixels: 2,
     radiusMaxPixels: 50,
     lineWidthMinPixels: 1,
-    getPosition: d => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
-    getFillColor: d => [255, 140, 0],
+    getPosition: (d) => [Number(d.gtfs_longitude), Number(d.gtfs_latitude)],
+    getFillColor: (d) => [255, 140, 0],
     // getRadius: (d) => 10,
     // getLineColor: (d) => [0, 0, 0],
   });
@@ -70,29 +72,8 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
       <ReactMapGL
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
         {...viewport}
-        onViewportChange={viewport => setViewport(viewport)}
+        onViewportChange={(viewport) => setViewport(viewport)}
       >
-        {/* {showPopup && (
-          <Popup
-            latitude={selectedStation.latitude}
-            longitude={selectedStation.longitude}
-            closeButton={true}
-            closeOnClick={false}
-            onClose={() => setShowPopup(false)}
-            anchor="right"
-            className="z-50"
-          >
-            <p className="text-2xl">{selectedStation.name}</p>
-            <p>Daytime Routes: {selectedStation.daytime_routes}</p>
-            <p>Division: {selectedStation.division}</p>
-            <p>Line: {selectedStation.line}</p>
-            <p>Borough: {selectedStation.borough}</p>
-            <p>Structure: {selectedStation.structure}</p>
-            <p>North Direction: {selectedStation.north}</p>
-            <p>South Direction: {selectedStation.south}</p>
-          </Popup>
-        )} */}
-        {/* {markers} */}
         <DeckGL
           viewState={viewport}
           layers={[hexLayer, scatterLayer]}
@@ -102,7 +83,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
               const station =
                 object.stop_name &&
                 `${object.stop_name}\nDaytime Routes: ${object.daytime_routes}\nNorth Direction Label: ${object.north_direction_label}\nSouth Direction Label: ${object.south_direction_label}\n`;
-              const stops = object?.points?.map(s => `${s.source.stop_name}`);
+              const stops = object?.points?.map((s) => `${s.source.stop_name}`);
               const entries = object?.points?.reduce(
                 (acc, cur) =>
                   acc + monthly
@@ -127,7 +108,7 @@ const Subway = ({ stations, yearCounts, monthlyCounts, aggregate }) => {
       </ReactMapGL>
       <ControlPanel
         year={dataYear}
-        setYear={y => setDataYear(Number(y))}
+        setYear={(y) => setDataYear(Number(y))}
         setMonthly={(val: boolean) => setMonthly(val)}
         monthly={monthly}
         month={dataMonth}
