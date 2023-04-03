@@ -61,12 +61,12 @@ const AboutView = ({ about }: Props) => {
           {about.body}
         </p>
 
-        <Button
+        {/* <Button
           className="col-start-6 col-span-2 mx-auto"
           onClick={handleOpenModal}
         >
           Resume
-        </Button>
+        </Button> */}
         <Modal isOpen={open}>
           <Button
             className="absolute w-1/4 z-50 m-2"
